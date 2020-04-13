@@ -1,7 +1,8 @@
 const {
     Discord,
     Client,
-    MessageEmbed
+    MessageEmbed,
+    Collection
 } = require("discord.js");
 
 
@@ -13,8 +14,15 @@ const client = new Client({
     disableEveryone: true
 });
 
+client.commands = new Collection();
+client.aliases = new Collection();
+
 config({
     path: __dirname + "/.env"
+});
+
+["command"].forEach(handler => {
+    require(`./handler/${handler}`)(client);
 });
 
 client.on("ready", () => {
@@ -38,34 +46,16 @@ client.on("message", async message => {
 
     if (!message.content.startsWith(prefix)) return;
 
+    if (!message.member) message.member = await message.guild.fetchMember(message);
+
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
 
-    if (cmd === "ping") {
-        const msg = await message.channel.send(`Pinging...`);
+    if (cmd.length === 0) return;
 
-        msg.edit(`Pong\n Latency is ${Math.floor(msg.createdAt - message.createdAt)}ms \n API Latency is ${Math.round(client.ws.ping)}ms`);
-    }
-
-    if (cmd == "say") {
-        if (message.deletable) message.delete();
-
-        if (args.length < 1) return message.reply("Nothing to say").then(m => m.delete(5000));
-
-        const roleColor = message.guild.me.displayHexColor;
-
-        if (args[0].toLowerCase() === "embed") {
-            const embed = new MessageEmbed()
-                .setColor(roleColor)
-                .setDescription(args.slice(1).join(" "))
-                .setTimestamp()
-                .setImage('https://i.chzbgr.com/full/9097238272/h3EBA2E25/how-it-really-is-what-it-feels-like-a-convert-all-power-from-the-life-support-to-the-main-thrusters');
-
-            message.channel.send(embed);
-        } else {
-            message.channel.send(args.join(" "));
-        }
-    }
+    let command = client.commands.get(cmd);
+    if (!command) command = client.commands.get(client.aliases.get(cmd));
+    if (command) command.run(client, message, args);
 });
 
 client.login(process.env.TOKEN);
