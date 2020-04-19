@@ -12,6 +12,7 @@
     "ascii-table": "0.0.9",
     "discord.js": "^12.1.1",
     "dotenv": "^8.2.0",
-    "node.js": "0.0.1-security"
+    "node.js": "0.0.1-security",
+    "ytdl-core": "^2.1.0"
   }
 }
