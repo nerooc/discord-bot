@@ -1,6 +1,6 @@
 module.exports = {
     name: "fmk",
-    aliases: ["fm", "fmkk"],
+    aliases: ["fm"],
     category: "fun",
     description: "F**k, marry, kill",
     usage: "<input>",
