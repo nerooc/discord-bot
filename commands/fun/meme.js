@@ -9,7 +9,7 @@
       accessableby: "Members",
       aliases: [],
       run: async (bot, message, args) => {
-          let msg = await message.channel.send("Generating...")
+          let msg = await message.channel.send("Generuję...")
 
           let {
               body
@@ -21,10 +21,10 @@
               }) return message.channel.send("I broke! Try again.")
 
           let mEmbed = new Discord.MessageEmbed()
-              .setAuthor(`TestBot MEMES!`, message.guild.iconURL)
+              .setAuthor(`Łap mema!`, message.guild.iconURL)
               .setImage(body.url)
               .setTimestamp()
-              .setFooter(`TEST BOT`, bot.user.displayAvatarURL)
+
 
           message.channel.send({
               embed: mEmbed
