@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 const superagent = require("superagent")
 
 module.exports = {
-    name: "cat",
+    name: "pies",
     noalias: "No Aliases",
     description: "Sends a meme from a website!",
     usage: "<input>",
@@ -14,15 +14,15 @@ module.exports = {
         let {
             body
         } = await superagent
-            .get(`http://aws.random.cat/meow`)
+            .get(`https://dog.ceo/api/breeds/image/random`)
 
         if (!{
                 body
-            }) return message.channel.send("I broke! Try again.")
+            }) return message.channel.send("Zepsute, napraw :(")
 
         let mEmbed = new Discord.MessageEmbed()
-            .setAuthor(`Łap kitku!`, message.guild.iconURL)
-            .setImage(body.file)
+            .setAuthor(`Łap pieseła!`, message.guild.iconURL)
+            .setImage(body.message)
             .setTimestamp()
 
         message.channel.send({
