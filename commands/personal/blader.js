@@ -5,6 +5,6 @@ module.exports = {
     description: "-",
     usage: "<input>",
     run: async (client, message, args) => {
-        const msg = await message.channel.send("a ci jebnę Blader");
+        const msg = await message.channel.send("a ci jebnę blader");
     }
 }
