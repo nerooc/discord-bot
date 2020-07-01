@@ -27,13 +27,10 @@ config({
 
 client.on("ready", () => {
     console.log(`I am online now! My name is ${client.user.username}`);
-    client.user.setPresence({
-        status: "online",
-        game: {
-            name: "me getting developed",
-            type: "WATCHING"
-        }
-    });
+    client.user.setActivity(
+            "me getting developed",
+            {type: "WATCHING"}
+    );
 
 });
 
