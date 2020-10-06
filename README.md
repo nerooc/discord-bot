@@ -1,8 +1,14 @@
-# Discord Bot - PaniDzielnicowa
+# `Discord Bot - PaniDzielnicowa`
+
+### [OPEN DEMO]()
+
+## Tech stack
+- Discord.js
+
+
 Basic discord bot written in Javascript. It supports the basic commands detailed below. 
 
 Currently still under development - planning to add more features (mainly song request support).  
-
 
 ### Command prefix is a classic exclamation mark - "!"
 
